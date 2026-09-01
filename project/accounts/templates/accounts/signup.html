@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="form-box">
+    <h1>Create Account</h1>
+    <p>Join our library and start reading.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: #c0392b; font-size: 14px;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <input id="username" name="username" type="text" placeholder="Username" value="{{ request.POST.username|default:'' }}" required>
+        <input id="email" name="email" type="email" placeholder="Email" value="{{ request.POST.email|default:'' }}" required>
+        <input id="password" name="password" type="password" placeholder="Password" required>
+        <input id="confirmPassword" name="confirm_password" type="password" placeholder="Confirm Password"  required>
+
+        <button type="submit">Sign Up</button>
+        
+        <p id="formMessage" style="margin-top: 10px; font-size: 13px;"></p>
+    </form>
+
+    <p style="margin-top: 15px; font-size: 13px;">
+        Already have an account? <a href="{% url 'login' %}" style="color: #805838; font-weight: bold;">Login</a>
+    </p>
+</div>
+{% endblock %}

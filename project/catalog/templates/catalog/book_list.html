@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Book Catalog{% endblock %}
+
+{% block content %}
+<div class="catalog">
+    <div class="welcome">
+        <p class="small-title">WELCOME TO OUR LIBRARY</p>
+        <h1>Find Your Next<br>Great Read.</h1>
+        <p class="quote">Perhaps, somewhere between the pages, you’ll find yourself.</p>
+    </div>
+
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search for a book...">
+        <select id="searchType">
+            <option value="all">All</option>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="category">Category</option>
+        </select>
+        <button id="clearSearch" type="button">Clear</button>
+    </div>
+
+    <p id="resultCount">Search Results: {{ books|length }} books</p>
+    <p id="noResults" style="display: none;">No books found.</p>
+
+    <h2 class="section-title">All Books</h2>
+
+    <div class="books">
+        {% for book in books %}
+            <div class="book-card">
+                <div class="book-image">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}" style="width: 100%; height: 270px; object-fit: fit; background-color: transparent; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.15)); padding: 8px;">
+                    {% else %}
+                        <span>📖</span>
+                    {% endif %}
+                </div>
+
+                <h2 class="book-title">{{ book.title }}</h2>
+                <p class="book-author">{{ book.author }}</p>
+                <p class="book-category">{{ book.category }}</p>
+                <p class="available">Available: {{ book.available_copies }}</p>
+
+                {% if book.available_copies > 0 %}
+                    {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'borrow_book' book.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="borrow-button">Borrow</button>
+                        </form>
+                    {% else %}
+                        <button type="button" class="borrow-button" onclick="document.getElementById('loginPopup').style.display='flex'">Borrow</button>
+                    {% endif %}
+                {% else %}
+                    <button class="borrow-button" disabled>Not Available</button>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No books available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="form-box">
+    <h1>Welcome Back</h1>
+    <p>Login to continue your reading journey.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p id="formMessage" style="color: #c0392b;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <p class="login-required" style="margin-top: 15px;">
+        Don't have an account? <a href="{% url 'signup' %}" style="color: #805838;">Sign Up</a>
+    </p>
+</div>
+{% endblock %}

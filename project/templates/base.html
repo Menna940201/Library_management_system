@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Our Library{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <span>📚</span>
+            <h2>Our Library</h2>
+        </div>
+        <nav>
+            <a href="{% url 'book_list' %}">Books</a>
+            <a href="{% url 'my_loans' %}">My Loans</a>
+            {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display: inline; margin: 0;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Read. Discover. Enjoy.</p>
+    </footer>
+
+    <div id="loginPopup">
+        <div class="popup-box">
+            <button id="closePopup">&times;</button>
+            <h2>Login Required</h2>
+            <p>Please login before borrowing a book.</p>
+            <a href="{% url 'login' %}" class="borrow-button" style="display: inline-block; text-decoration: none; margin-top: 10px;">Go to Login</a>
+        </div>
+    </div>
+
+    <script>
+        window.isLoggedIn = "{{ request.user.is_authenticated}}" === "True";
+    </script>
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
