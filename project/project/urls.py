@@ -21,6 +21,7 @@ from django.urls import path
 from loans.views import borrow_book, return_book, my_loans
 from accounts.views import signup_view, login_view, logout_view
 from catalog.views import book_list
+from catalog.views import about_us
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('books/', book_list, name='book_list'),
+    path('about-us/', about_us, name='about_us'),
 ]
 
 

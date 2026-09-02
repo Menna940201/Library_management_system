@@ -27,6 +27,28 @@
 
     <h2 class="section-title">All Books</h2>
 
+    <div class="library-stats">
+
+        <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-number">{{ total_copies }}</div>
+            <div class="stat-label">Total Books</div>
+        </div>
+    
+        <div class="stat-card">
+            <div class="stat-icon">✓</div>
+            <div class="stat-number">{{ available_copies }}</div>
+            <div class="stat-label">Available Books</div>
+        </div>
+    
+        <div class="stat-card">
+            <div class="stat-icon">📖</div>
+            <div class="stat-number">{{ borrowed_copies }}</div>
+            <div class="stat-label">Borrowed Books</div>
+        </div>
+    
+    </div>
+
     <div class="books">
         {% for book in books %}
             <div class="book-card">
@@ -40,7 +62,7 @@
 
                 <h2 class="book-title">{{ book.title }}</h2>
                 <p class="book-author">{{ book.author }}</p>
-                <p class="book-category">{{ book.category }}</p>
+                <p class="book-category">{{ book.get_category_display }}</p>
                 <p class="available">Available: {{ book.available_copies }}</p>
 
                 {% if book.available_copies > 0 %}
@@ -53,7 +75,7 @@
                         <button type="button" class="borrow-button" onclick="document.getElementById('loginPopup').style.display='flex'">Borrow</button>
                     {% endif %}
                 {% else %}
-                    <button class="borrow-button" disabled>Not Available</button>
+                    <button class="borrow-button" disabled style="cursor: not-allowed; background-color: #7288ae84; color: #666;">Not Available</button>
                 {% endif %}
             </div>
         {% empty %}

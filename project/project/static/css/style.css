@@ -6,7 +6,10 @@ body {
     margin: 0;
     font-family: Georgia, serif;
     background: #F2EDE2;
-    color: #4A3326
+    color: #4A3326;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .navbar {
@@ -103,7 +106,7 @@ main {
 }
 
 .search {
-    background: #a27155ac;
+    background: #a271556c;
     padding: 11px;
     border-radius: 10px;
     display: flex;
@@ -139,7 +142,12 @@ main {
 .search button{
     background: #547792;
 }
-
+.borrow-button:hover {
+    background: #547792;
+}
+.search button:hover {
+    background: #467497;
+}
 .books {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -228,6 +236,9 @@ main {
     cursor: pointer;
     margin-left: 20px
 }
+.logout-button:hover {
+    background: #805838;
+}
 
 #formMessage {
     color: #805838
@@ -294,10 +305,207 @@ main {
     cursor: pointer
 }
 
-footer {
-    background: #28374A;
-    color: #FFF8ED;
+.main-footer {
+    background-color: #28374A; 
+    color: #e2e8f0;
+    padding: 40px 0 20px 0;
+    font-family: sans-serif;
+    margin-top: auto; 
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+    width: 40px;
+    height: 2px;
+    background-color: #E8D8C1; 
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-section ul li a:hover {
+    color: #E8D8C1; 
+}
+
+.footer-bottom {
     text-align: center;
-    padding: 18px;
-    margin-top: 30px
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #2d3748;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-title::after {
+        right: 50%;
+        transform: translateX(50%); 
+    }
+}
+
+.library-stats {
+    display: flex ;
+    gap: 20px ;
+    margin: 30px 0 ;
+}
+
+.stat-card {
+    flex: 1 ;
+    padding: 25px ;
+    border-radius: 12px ;
+    text-align: center ;
+    background: #E4D4C0 ;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) ;
+    border: 1px solid;
+    border-color: #a27155ac ;
+}
+
+.stat-icon {
+    font-size: 28px ;
+    margin-bottom: 10px ;
+}
+
+.stat-number {
+    font-size: 30px ;
+    font-weight: bold ;
+}
+
+.stat-label {
+    margin-top: 5px ;
+    color: #666 ;
+}
+
+.about-us-section {
+    padding: 60px 20px;
+    background-color: #E4D4C0; 
+    text-align: center;
+    direction: ltr; 
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about-heading {
+    font-size: 2.5rem;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.about-subheading {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+.about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.about-card {
+    background: #FFF9F0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px 20px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 340px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.about-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.about-card h3 {
+    color: #1a1a2e;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.about-card p {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-align: left; 
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.user-welcome {
+    color: #e2e8f07e; 
+    font-size: 0.95rem;
+    margin-right: 15px; 
+    margin-left: 15px;  
+}
+
+.user-welcome strong {
+    color: #60a5fa; 
 }

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Our Library{% endblock %}</title>
+    <title>{% block title %}LibroHub{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -13,12 +13,15 @@
     <header class="navbar">
         <div class="logo">
             <span>📚</span>
-            <h2>Our Library</h2>
+            <h2>LibroHub</h2>
         </div>
         <nav>
+            
             <a href="{% url 'book_list' %}">Books</a>
             <a href="{% url 'my_loans' %}">My Loans</a>
+            <a href="{% url 'about_us' %}">About Us</a>
             {% if request.user.is_authenticated %}
+                <span class="user-welcome">Welcome, <strong>{{ request.user.username }}</strong>!</span>
                 <form method="post" action="{% url 'logout' %}" style="display: inline; margin: 0;">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Logout</button>
@@ -41,9 +44,34 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Read. Discover. Enjoy.</p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3 class="footer-title">Digital Library</h3>
+                <p>Your integrated platform for borrowing and exploring books and literary works with ease and security.</p>
+            </div>
+    
+            <div class="footer-section links">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'book_list' %}">Book Catalog</a></li>
+                    <li><a href="{% url 'my_loans' %}">My Loans</a></li>
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section contact">
+                <h3 class="footer-title">Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> librohub@library.com</p>
+                <p><i class="fas fa-phone"></i> +20 123 456 789</p>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2026 All Rights Reserved</p>
+        </div>
     </footer>
+    
 
     <div id="loginPopup">
         <div class="popup-box">

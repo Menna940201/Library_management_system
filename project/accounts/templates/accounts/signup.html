@@ -16,14 +16,27 @@
 
     <form method="post" action="{% url 'signup' %}">
         {% csrf_token %}
-        <input id="username" name="username" type="text" placeholder="Username" value="{{ request.POST.username|default:'' }}" required>
+        <!-- <input id="username" name="username" type="text" placeholder="Username" value="{{ request.POST.username|default:'' }}" required>
         <input id="email" name="email" type="email" placeholder="Email" value="{{ request.POST.email|default:'' }}" required>
         <input id="password" name="password" type="password" placeholder="Password" required>
-        <input id="confirmPassword" name="confirm_password" type="password" placeholder="Confirm Password"  required>
-
+        <input id="confirmPassword" name="confirm_password" type="password" placeholder="Confirm Password"  required> -->
+        {{ form.non_field_errors }}
+        
+        <input id="username" name="username" type="text" placeholder="Username" value="{{ form.username.value|default:'' }}"
+            required>
+        {{ form.username.errors }}
+        
+        <input id="email" name="email" type="email" placeholder="Email" value="{{ form.email.value|default:'' }}" required>
+        {{ form.email.errors }}
+        
+        <input id="password" name="password1" type="password" placeholder="Password" required>
+        {{ form.password1.errors }}
+        
+        <input id="confirmPassword" name="password2" type="password" placeholder="Confirm Password" required>
+        {{ form.password2.errors }}
         <button type="submit">Sign Up</button>
         
-        <p id="formMessage" style="margin-top: 10px; font-size: 13px;"></p>
+        <!-- <p id="formMessage" style="margin-top: 10px; font-size: 13px;"></p> -->
     </form>
 
     <p style="margin-top: 15px; font-size: 13px;">

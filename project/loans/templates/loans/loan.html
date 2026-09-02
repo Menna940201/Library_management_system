@@ -22,7 +22,7 @@
                 <h2 class="book-title">{{ loan.book.title }}</h2>
                 <p class="book-author">By {{ loan.book.author }}</p>
                 <p><strong>Borrowed:</strong> {{ loan.borrow_date|date:"Y-m-d" }}</p>
-                <p><strong>Status:</strong> <span class="book-category">{{ loan.status|default:"Borrowed" }}</span></p>
+                <p><strong>Status:</strong> <span class="book-category">{{ loan.get_status_display }}</span></p>
 
                 {% if loan.status == "borrowed" %}
                     <form action="{% url 'return_book' loan.id %}" method="post" style="margin-top: 10px;">

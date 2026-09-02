@@ -6,35 +6,34 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 
 def signup_view(request):
-    # if request.method == 'POST':
-    #     form = SignUpForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save()
-    #         login(request, user)
-    #         messages.success(request, "Account created successfully!")
-    #         return redirect('book_list')
-    #     else:
-    #         messages.error(request, "Please correct the errors below.")
-    # else:
-    #     form = SignUpForm()
-    # return render(request, 'accounts/signup.html', {'form': form})
     if request.method == 'POST':
-        username = request.POST.get('username','').strip()
-        email = request.POST.get('email', '').strip()
-        password = request.POST.get('password', '')
-        confirm_password = request.POST.get('confirm_password', '')
-        if password != confirm_password:
-            messages.error(request, "Passwords do not match.")
-            return render(request, 'accounts/signup.html')
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username is already taken.")
-            return render(request, 'accounts/signup.html')
-        user = User.objects.create_user(username=username, email=email, password=password)
-        login(request, user)
-        messages.success(request, "Account created successfully!")
-        return redirect('book_list')
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Account created successfully!")
+            return redirect('book_list')
+        
+    else:
+        form = SignUpForm()
+    return render(request, 'accounts/signup.html', {'form': form})
+    # if request.method == 'POST':
+    #     username = request.POST.get('username','').strip()
+    #     email = request.POST.get('email', '').strip()
+    #     password = request.POST.get('password', '')
+    #     confirm_password = request.POST.get('confirm_password', '')
+    #     if password != confirm_password:
+    #         messages.error(request, "Passwords do not match.")
+    #         return render(request, 'accounts/signup.html')
+    #     if User.objects.filter(username=username).exists():
+    #         messages.error(request, "Username is already taken.")
+    #         return render(request, 'accounts/signup.html')
+    #     user = User.objects.create_user(username=username, email=email, password=password)
+    #     login(request, user)
+    #     messages.success(request, "Account created successfully!")
+    #     return redirect('book_list')
 
-    return render(request, 'accounts/signup.html')
+    # return render(request, 'accounts/signup.html')
 
 
 def login_view(request):
