@@ -1,36 +1,3 @@
-
-// const signupForm = document.getElementById("signupForm");
-
-// if (signupForm) {
-//     signupForm.addEventListener("submit", function(event) {
-//         const password = document.getElementById("password")?.value;
-//         const confirmPassword = document.getElementById("confirm_password")?.value;
-//         const email = document.getElementById("email")?.value || "";
-//         const formMessage = document.getElementById("formMessage");
-
-//         if (formMessage) formMessage.textContent = "";
-
-//         if (password && confirmPassword && password !== confirmPassword) {
-//             event.preventDefault();
-//             if (formMessage) formMessage.textContent = "Passwords do not match.";
-//             return;
-//         }
-
-//         if (email && (!email.includes("@") || !email.includes("."))) {
-//             event.preventDefault();
-//             if (formMessage) formMessage.textContent = "Please enter a valid email.";
-//             return;
-//         }
-
-//         if (confirmPassword !== undefined && password !== confirmPassword) {
-//             event.preventDefault();
-//             if (formMessage) formMessage.textContent = "Passwords do not match.";
-//             return;
-//         }
-//     });
-// }
-
-
 const searchInput = document.getElementById("searchInput");
 const books = document.querySelectorAll(".book-card");
 const searchType = document.getElementById("searchType");

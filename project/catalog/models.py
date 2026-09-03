@@ -10,6 +10,17 @@ Book_Categories = [
     ("SPIRITUALITY_MINDFULNESS", "Spirituality & Mindfulness"),
     ("HEALTH_SCIENCE", "Health & Science"),
     ("RELATIONSHIPS", "Relationships"),
+    ("SELF_IMPROVEMENT", "Self-Improvement"),
+    ("CAREER_DEVELOPMENT", "Career Development"),
+    ("EDUCATION_LEARNING", "Education & Learning"),
+    ("TECHNOLOGY_INNOVATION", "Technology & Innovation"),
+    ("ARTS_CULTURE", "Arts & Culture"),
+    ("HISTORY_POLITICS", "History & Politics"),
+    ("TRAVEL_ADVENTURE", "Travel & Adventure"),
+    ("FOOD_CULINARY", "Food & Culinary"),
+    ("SPORTS_FITNESS", "Sports & Fitness"),
+    ("ENTERTAINMENT_MEDIA", "Entertainment & Media"),
+    ("Fiction", "Fiction"),
 ]
 
 

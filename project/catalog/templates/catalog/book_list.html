@@ -48,7 +48,13 @@
         </div>
     
     </div>
-
+    {% if request.user.is_staff %}
+        <div class="admin-actions">
+            <a href="{% url 'add_book' %}" class="admin-button">
+                + Add New Book
+            </a>
+        </div>
+    {% endif %}
     <div class="books">
         {% for book in books %}
             <div class="book-card">
@@ -76,6 +82,19 @@
                     {% endif %}
                 {% else %}
                     <button class="borrow-button" disabled style="cursor: not-allowed; background-color: #7288ae84; color: #666;">Not Available</button>
+                {% endif %}
+                {% if request.user.is_staff %}
+                <div class="admin-book-actions">
+                
+                    <a href="{% url 'edit_book' book.id %}" class="edit-button" >
+                        Edit
+                    </a>
+                
+                    <a href="{% url 'delete_book' book.id %}" class="delete-button">
+                        Delete
+                    </a>
+                
+                </div>
                 {% endif %}
             </div>
         {% empty %}

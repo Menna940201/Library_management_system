@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Add Book{% endblock %}
+
+{% block content %}
+
+<div class="book-form-page">
+
+    <div class="book-form-container">
+        <h1>Add New Book</h1>
+        <p class="form-subtitle">Fill in the book information below.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="form-buttons">
+                <button type="submit" class="save-button">Add Book</button>
+
+                <a href="{% url 'book_list' %}" class="cancel-button">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

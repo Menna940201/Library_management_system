@@ -20,8 +20,7 @@ from django.conf.urls.static import static
 from django.urls import path
 from loans.views import borrow_book, return_book, my_loans
 from accounts.views import signup_view, login_view, logout_view
-from catalog.views import book_list
-from catalog.views import about_us
+from catalog.views import book_list, about_us, add_book, edit_book, delete_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +32,9 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('books/', book_list, name='book_list'),
     path('about-us/', about_us, name='about_us'),
+    path('books/add/', add_book, name='add_book'),
+    path('books/edit/<int:book_id>/', edit_book, name='edit_book'),
+    path('books/delete/<int:book_id>/', delete_book, name='delete_book'),
 ]
 
 
